@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#ffffff" />
 
   <title>Fairfax Dentist | Comprehensive Dental Care in Fairfax, VA</title>
-  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Advanced technology meets compassionate family dentistry. Implants, veneers, emergency, Invisalign, whitening, and more." />
+  <meta name="description" content="Fairfax Dentist — Excellence in comprehensive dental care. Implants, veneers, emergency, Invisalign, whitening, and more." />
 
   <meta property="og:title" content="Fairfax Dentist" />
   <meta property="og:description" content="Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry." />
@@ -18,617 +18,532 @@
 
   <style>
     :root{
-      /* Night palette (non-bright) */
-      --bg:#070a14;
-      --bg2:#0b1020;
-      --panel: rgba(255,255,255,.04);
-      --panel2: rgba(255,255,255,.06);
-      --ink: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
-      --muted2: rgba(255,255,255,.52);
+      /* Premium Clinical Palette */
+      --bg-white: #ffffff;
+      --bg-ice: #F5F7FA;
+      --bg-dark: #111827;
 
-      /* soft medical accents */
-      --accent: #7aa2ff;
-      --accent2:#7de3ff;
-      --accent3:#b79cff;
+      --ink: #111827;
+      --muted: #64748B;
 
-      --shadow: 0 18px 70px rgba(0,0,0,.55);
-      --shadow2: 0 10px 30px rgba(0,0,0,.45);
+      --accent: #2563EB;
+      --btn-bg: #111827;
+      --btn-text: #ffffff;
 
+      /* Layout */
       --max: 1200px;
       --pad: max(24px, 5vw);
 
-      --h1: clamp(34px, 5vw, 64px);
-      --h2: clamp(22px, 3.3vw, 36px);
+      /* Typography */
+      --h1: clamp(36px, 5vw, 64px);
+      --h2: clamp(24px, 3.5vw, 36px);
       --p: clamp(16px, 1.1vw, 18px);
 
-      --radius: 18px; /* night version uses gentle radius (no frames/borders) */
+      /* Radius: Sharp as requested */
+      --radius: 0px;
 
-      /* images */
-      --hero-webp: url("images/hero.webp");
-      --hero-jpg:  url("images/hero.jpg");
+      /* Hero Backgrounds */
+      --hero-image-webp: url("images/hero.webp");
+      --hero-image-jpg: url("images/hero.jpg");
+
+      /* Fixed UI */
+      --bottomBarH: 72px;
+      --shadow: 0 18px 45px rgba(17,24,39,0.14);
     }
 
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth; height:100%}
-    body{
-      margin:0; min-height:100%;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(1200px 600px at 10% 0%, rgba(122,162,255,.12), transparent 60%),
-        radial-gradient(900px 500px at 85% 12%, rgba(125,227,255,.10), transparent 60%),
-        radial-gradient(1200px 700px at 60% 105%, rgba(183,156,255,.10), transparent 65%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-      overflow-x:hidden;
-    }
-    img{max-width:100%; height:auto; display:block}
-    a{color:inherit; text-decoration:none}
-    button,input,textarea{font:inherit; color:inherit}
-
-    /* subtle grain for uniqueness */
-    body::after{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
-      opacity:.22;
-      z-index:0;
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: calc(var(--bottomBarH) + env(safe-area-inset-bottom)); /* reserve for fixed bottom bar */
     }
 
-    /* spotlight (desktop only) */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      background: radial-gradient(600px 420px at var(--mx,50%) var(--my,30%), rgba(122,162,255,.14), transparent 65%);
-      opacity:.55;
-      transition: opacity .2s ease;
-      z-index:0;
-    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
+    button, input, textarea { font: inherit; color: inherit; border-radius: var(--radius); }
 
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
       padding-left: max(var(--pad), env(safe-area-inset-left));
-      padding-right:max(var(--pad), env(safe-area-inset-right));
-      position:relative;
-      z-index:1;
-    }
-    .section{padding: clamp(58px, 8vw, 100px) 0; position:relative; z-index:1}
-
-    /* top progress bar */
-    .progress{
-      position:fixed; top:0; left:0; height:2px;
-      width:0%;
-      background: linear-gradient(90deg, rgba(122,162,255,.85), rgba(125,227,255,.85));
-      z-index:999;
-      box-shadow: 0 0 18px rgba(122,162,255,.35);
+      padding-right: max(var(--pad), env(safe-area-inset-right));
     }
 
-    /* skip link */
-    .skip{
-      position:absolute; left:-999px; top:0;
-      padding:12px 16px;
-      background: rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: 14px;
-      z-index:999;
-      backdrop-filter: blur(10px);
-    }
-    .skip:focus{left:16px; top:16px}
+    .section { padding: clamp(60px, 8vw, 100px) 0; }
 
-    /* header */
-    header{
-      position:sticky; top:0; z-index:200;
-      background: rgba(7,10,20,.62);
-      backdrop-filter: blur(14px) saturate(140%);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .head{
-      height:78px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      padding:10px 12px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    .brand img{height:38px; width:auto; display:block}
+    .bg-ice { background-color: var(--bg-ice); }
+    .bg-white { background-color: var(--bg-white); }
 
-    .right{display:flex; align-items:center; gap:14px}
-    .phone{
-      display:none;
-      padding:10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      color: var(--ink);
-      font-weight:650;
-      letter-spacing:-.01em;
-      border:1px solid rgba(255,255,255,.10);
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .phone:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.10)}
+    .grid { display: grid; gap: 24px; }
 
-    .burger{
-      width:48px; height:48px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      cursor:pointer;
-      display:grid; place-items:center;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    .skip {
+      position: absolute; left: -999px; top: 0;
+      background: var(--btn-bg); color: #fff;
+      padding: 12px 20px; z-index: 9999;
     }
-    .burger:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.10)}
-    .burger .lines{width:20px; height:14px; position:relative}
-    .burger .lines span{
-      position:absolute; left:0; right:0;
-      height:2px; background: rgba(255,255,255,.88);
-      transition: transform .18s ease, top .18s ease, opacity .18s ease;
-      border-radius: 99px;
-    }
-    .burger .lines span:nth-child(1){top:0}
-    .burger .lines span:nth-child(2){top:6px; opacity:.9}
-    .burger .lines span:nth-child(3){top:12px; opacity:.85}
-    .burger[aria-expanded="true"] .lines span:nth-child(1){top:6px; transform:rotate(45deg)}
-    .burger[aria-expanded="true"] .lines span:nth-child(2){opacity:0}
-    .burger[aria-expanded="true"] .lines span:nth-child(3){top:6px; transform:rotate(-45deg)}
+    .skip:focus { left: 20px; top: 20px; }
 
-    /* drawer */
-    .drawerOverlay{
-      position:fixed; inset:0; z-index:299;
-      background: rgba(0,0,0,.55);
-      opacity:0; pointer-events:none;
-      transition:opacity .22s ease;
+    /* Unified icon style */
+    .icon{
+      width: 20px; height: 20px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      flex: 0 0 auto;
     }
-    .drawer{
-      position:fixed; top:0; right:0; z-index:300;
-      width:min(360px, 92vw);
-      height:100vh;
-      background: rgba(11,16,32,.94);
-      border-left:1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(16px) saturate(140%);
-      transform: translateX(102%);
-      transition: transform .26s ease;
-      display:flex; flex-direction:column;
-    }
-    .drawerHead{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:18px 18px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .drawerTitle{font-weight:850; letter-spacing:-.02em}
-    .drawerClose{
-      width:44px; height:44px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: var(--ink);
-      cursor:pointer;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .drawerClose:hover{transform:translateY(-1px); border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.10)}
-    .drawerBody{padding:16px 18px; display:grid; gap:12px}
-    .navLink{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      font-weight:700;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .navLink:hover{transform: translateY(-1px); border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.10)}
-    .navMeta{
-      margin-top:6px;
-      padding:14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      color: var(--muted);
-      display:grid; gap:8px;
-    }
-    .navMeta a{color: var(--ink); font-weight:650}
-    .isMenuOpen .drawerOverlay{opacity:1; pointer-events:auto}
-    .isMenuOpen .drawer{transform: translateX(0)}
 
-    /* hero */
-    .hero{
-      position:relative;
-      min-height: 86vh;
-      display:flex; align-items:center;
-      overflow:hidden;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      z-index:1;
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
-    .hero::before{
+    .head {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 80px;
+    }
+    .brand img { height: 40px; width: auto; }
+
+    .right { display: flex; align-items: center; gap: 20px; }
+    .phone {
+      display: none;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      position: relative;
+    }
+    .phone::after{
       content:"";
-      position:absolute; inset:0;
-      background-position:center;
-      background-size:cover;
-      background-repeat:no-repeat;
-      /* No opacity fade of the photo (as requested). We use a scrim instead. */
-      background-image: var(--hero-jpg);
-      background-image: -webkit-image-set(var(--hero-webp) 1x, var(--hero-jpg) 1x);
-      background-image: image-set(var(--hero-webp) type("image/webp"), var(--hero-jpg) type("image/jpeg"));
-      transform: scale(1.02);
-      z-index:0;
+      position:absolute; left:0; bottom:-6px; width:100%; height:2px;
+      background: linear-gradient(90deg, transparent, rgba(37,99,235,.55), transparent);
+      opacity:.0; transform: scaleX(.85);
+      transition: .25s ease;
     }
-    .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 520px at 18% 40%, rgba(7,10,20,.55), rgba(7,10,20,.85) 70%),
-        linear-gradient(90deg, rgba(7,10,20,.92), rgba(7,10,20,.65) 55%, rgba(7,10,20,.35));
-      z-index:1;
+    .phone:hover::after{ opacity:1; transform: scaleX(1); }
+
+    .burger {
+      width: 48px; height: 48px;
+      background: transparent; border: none;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+      gap: 6px; cursor: pointer; padding: 0;
     }
-    .heroInner{
-      position:relative; z-index:2;
-      max-width: 680px;
-      display:grid; gap:18px;
-      padding: clamp(40px, 6vw, 86px) 0;
+    .burger span {
+      display: block; height: 2px; background: var(--ink);
+      transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .burger span:nth-child(1) { width: 24px; }
+    .burger span:nth-child(2) { width: 32px; }
+    .burger span:nth-child(3) { width: 18px; }
+    .burger:hover span { width: 32px; background: var(--accent); }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex; align-items: center;
+      background: var(--bg-ice);
+      overflow: hidden;
+      --heroScale: 1;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: var(--hero-image-jpg);
+      background-size: cover; background-position: center;
+      opacity: 1; /* ✅ removed transparency as requested */
+      z-index: 0;
+      transform: scale(var(--heroScale));
+      transform-origin: center;
+      will-change: transform;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      /* keep soft overlay for readability, not an image transparency */
+      background: linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 42%, rgba(255,255,255,0.15) 100%);
+      z-index: 1;
     }
 
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      color: rgba(125,227,255,.92);
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      font-weight:800;
-      font-size:12px;
-    }
-    .kicker .dot{
-      width:8px; height:8px; border-radius:99px;
-      background: rgba(125,227,255,.8);
-      box-shadow: 0 0 18px rgba(125,227,255,.35);
+    .heroInner {
+      position: relative; z-index: 2;
+      max-width: 650px;
+      display: flex; flex-direction: column; gap: 24px;
     }
 
-    h1{
-      margin:0;
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent);
+      display: inline-flex; align-items: center; gap: 10px;
+      animation: slideIn .7s ease both;
+    }
+
+    h1 {
       font-size: var(--h1);
-      line-height:1.08;
-      letter-spacing:-.03em;
-      font-weight:900;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0;
+      color: var(--ink);
+      animation: fadeUp .85s ease .05s both;
     }
-    .sub{
-      margin:0;
+
+    .sub {
       font-size: var(--p);
       color: var(--muted);
-      max-width: 64ch;
+      max-width: 90%;
+      animation: fadeUp .85s ease .12s both;
     }
-    .ctaRow{display:flex; flex-wrap:wrap; gap:12px; margin-top:10px}
 
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding: 14px 18px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
+    .ctaRow {
+      display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;
+      animation: fadeUp .85s ease .18s both;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 32px;
+      font-weight: 600;
+      font-size: 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.2s ease, border-color 0.2s ease, box-shadow .2s ease;
+      position: relative;
+      will-change: transform;
+    }
+    .btn:active{ transform: translateY(1px) scale(0.99); }
+
+    .btnPrimary {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      box-shadow: var(--shadow);
+    }
+    .btnPrimary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btnSecondary {
+      background: transparent;
+      border: 1px solid rgba(17,24,39,.28);
       color: var(--ink);
-      font-weight:800;
-      cursor:pointer;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-    .btn:hover{transform: translateY(-1px); border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.10)}
-    .btnPrimary{
-      border-color: rgba(122,162,255,.40);
-      background: linear-gradient(90deg, rgba(122,162,255,.22), rgba(125,227,255,.16));
+    .btnSecondary:hover {
+      background: rgba(245,247,250,.75);
+      transform: translateY(-2px);
+      border-color: rgba(37,99,235,.35);
     }
 
-    /* section headers with glow */
-    .sectionHead{
-      display:grid;
-      gap:10px;
-      margin-bottom: 26px;
-      position:relative;
+    /* Titles + soft glow behind all section headers */
+    .h2 {
+      font-size: var(--h2);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.2;
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
     }
-    .sectionHead::before{
+    .h2::before{
       content:"";
       position:absolute;
-      left:-18px; top:-12px;
-      width: 280px; height: 120px;
-      background: radial-gradient(closest-side, rgba(122,162,255,.18), transparent 70%);
-      filter: blur(2px);
-      opacity:.95;
-      z-index:-1;
-    }
-    .sectionHead .label{
-      color: rgba(122,162,255,.90);
-      font-weight:850;
-      letter-spacing:.10em;
-      text-transform: uppercase;
-      font-size: 12px;
-      display:inline-flex; align-items:center; gap:10px;
-    }
-    .sectionHead .label svg{opacity:.9}
-    .h2{
-      margin:0;
-      font-size: var(--h2);
-      letter-spacing:-.02em;
-      font-weight:900;
-    }
-    .p{margin:0; color: var(--muted); font-size: var(--p)}
-
-    /* services bento */
-    .grid{display:grid; gap:22px}
-    .servicesGrid{
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      margin-top: 22px;
+      left:-14px; right:-14px;
+      top: 62%;
+      height: 1.05em;
+      transform: translateY(-50%);
+      background: radial-gradient(60% 120% at 40% 50%, rgba(37,99,235,.18), rgba(37,99,235,0) 70%),
+                  radial-gradient(60% 120% at 70% 40%, rgba(99,102,241,.12), rgba(99,102,241,0) 70%);
+      filter: blur(10px);
+      z-index: -1;
+      animation: glowPulse 6s ease-in-out infinite;
     }
 
-    .card{
-      position:relative;
-      display:flex; flex-direction:column; gap:14px;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.04);
-      overflow:hidden;
-      box-shadow: var(--shadow2);
-      transform: translateZ(0);
-      transition: transform .22s ease, box-shadow .22s ease;
-      cursor:pointer;
-      outline:none;
+    /* Services */
+    .servicesGrid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
     }
-    .card::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(600px 260px at 10% 0%, rgba(122,162,255,.20), transparent 60%);
-      opacity:.6;
-      pointer-events:none;
-    }
-    .card:hover{transform: translateY(-5px); box-shadow: var(--shadow)}
-    .card:focus-visible{outline:2px solid rgba(122,162,255,.55); outline-offset: 4px}
 
-    .cardMedia{
+    .card {
+      background: transparent;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card:focus-visible{
+      outline: 2px solid var(--accent);
+      outline-offset: 6px;
+    }
+
+    .cardMedia {
       aspect-ratio: 4/3;
-      background: rgba(255,255,255,.06);
-      overflow:hidden;
+      overflow: hidden;
+      background: var(--bg-ice);
+      box-shadow: 0 10px 28px rgba(17,24,39,0.10);
+      transform: translateZ(0);
     }
-    .cardMedia img{
-      width:100%; height:100%;
-      object-fit:cover;
-      transform: scale(1.02);
-      transition: transform .6s ease;
+    .cardMedia img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.55s ease, filter .55s ease;
+      filter: saturate(1.02) contrast(1.02);
     }
-    .card:hover .cardMedia img{transform: scale(1.07)}
-    .cardBody{padding: 16px 16px 18px}
-    .cardTop{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      margin-bottom:8px;
-    }
-    .cardTitle{
-      margin:0;
-      font-size: 18px;
-      font-weight:900;
-      letter-spacing:-.01em;
-      line-height:1.2;
-    }
-    .iconPill{
-      width:36px; height:36px;
-      display:grid; place-items:center;
-      border-radius: 999px;
-      background: rgba(122,162,255,.12);
-      border:1px solid rgba(122,162,255,.20);
-      box-shadow: 0 0 22px rgba(122,162,255,.10);
-      flex:0 0 auto;
-    }
-    .iconPill svg{opacity:.92}
-    .cardText{margin:0; color: var(--muted); font-size: 14.5px}
+    .card:hover .cardMedia img { transform: scale(1.06); }
 
-    /* about */
-    .aboutGrid{
-      display:grid; gap:22px;
-      grid-template-columns: 1fr;
-      margin-top: 18px;
-    }
-    .aboutBox{
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
-      padding: 22px;
-      position:relative;
-      overflow:hidden;
-    }
-    .aboutBox::after{
-      content:"";
-      position:absolute; inset:-40px;
-      background: radial-gradient(closest-side, rgba(125,227,255,.12), transparent 70%);
-      opacity:.6;
-      pointer-events:none;
-    }
-    .aboutBox p{margin:0 0 12px; color: var(--muted); font-size: var(--p)}
-    .aboutBox p:last-child{margin-bottom:0}
-
-    .stats{
-      display:grid;
-      gap:14px;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-    }
-    .stat{
-      border-radius: var(--radius);
-      padding: 16px;
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow2);
-      position:relative;
-      overflow:hidden;
-    }
-    .stat::before{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(260px 140px at 15% 20%, rgba(183,156,255,.18), transparent 60%);
-      opacity:.6;
-      pointer-events:none;
-    }
-    .stat b{display:block; font-weight:950; font-size: 20px; letter-spacing:-.02em}
-    .stat span{display:block; margin-top:4px; color: var(--muted); font-size: 13px}
-
-    /* contact */
-    .contactGrid{
-      display:grid; gap:22px;
-      grid-template-columns: 1fr;
-      margin-top: 22px;
-    }
-    .panel{
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
-      padding: 22px;
-    }
-    .hoursRow{
-      display:flex; justify-content:space-between; gap:12px;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      color: var(--muted);
-      font-size: 14.5px;
-    }
-    .hoursRow:last-child{border-bottom:0}
-    .hoursRow b{color: var(--ink)}
-    .mapFrame{
-      width:100%; height: 320px;
-      border:0;
-      border-radius: 16px;
-      overflow:hidden;
-      background: rgba(255,255,255,.06);
-    }
-    .mapFrame iframe{width:100%; height:100%; border:0}
-
-    label{
-      display:block;
-      margin-bottom: 8px;
-      font-size: 12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color: var(--muted2);
-      font-weight:850;
-    }
-    input,textarea{
-      width:100%;
-      padding: 14px 14px;
+    .cardBody { padding: 0; }
+    .cardHead{ display:flex; align-items:center; gap: 12px; margin-bottom: 6px; }
+    .svcIcon{
+      width: 38px; height: 38px;
+      display: grid; place-items: center;
+      color: var(--accent);
+      background: rgba(37,99,235,.10);
+      box-shadow: inset 0 0 0 1px rgba(37,99,235,.12);
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: var(--ink);
-      outline:none;
-      transition: border-color .2s ease, background .2s ease, transform .2s ease;
+      transition: transform .25s ease, background .25s ease;
+      animation: floaty 5.5s ease-in-out infinite;
     }
-    input:focus,textarea:focus{
-      border-color: rgba(122,162,255,.45);
-      background: rgba(122,162,255,.08);
-    }
-    textarea{min-height: 120px; resize: vertical}
-    .field{margin-bottom: 14px}
-    .errorText{display:none; margin:8px 0 0; font-size: 12px; color: #ff7b93}
-    .hasError .errorText{display:block}
-    .hasError input,.hasError textarea{border-color: rgba(255,123,147,.65); background: rgba(255,123,147,.08)}
+    .card:hover .svcIcon{ transform: translateY(-1px) rotate(-2deg); background: rgba(37,99,235,.14); }
+    .svcIcon .icon{ width: 20px; height: 20px; }
 
-    /* footer */
-    footer{
-      padding: 46px 0 100px; /* extra space for bottom bar */
-      border-top: 1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.18);
+    .cardTitle { margin: 0; font-size: 20px; font-weight: 700; }
+    .cardText { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+    /* About */
+    .aboutBox {
+      background: var(--bg-white);
+      padding: 40px;
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 10px 28px rgba(17,24,39,0.06);
+      transform: translateZ(0);
     }
-    .foot{
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
-      gap:14px;
+    .aboutBox p { margin-bottom: 20px; font-size: 17px; }
+
+    /* Contact */
+    .contactGrid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    .panel {
+      background: var(--bg-white);
+      padding: 30px;
+      height: 100%;
+      box-shadow: 0 10px 28px rgba(17,24,39,0.06);
+    }
+
+    .hoursRow {
+      display: flex; justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+    }
+    .hoursRow:last-child { border: none; }
+    .hoursRow b { font-weight: 600; }
+
+    input, textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      font-size: 16px;
+      transition: border-color .2s ease, background .2s ease, transform .12s ease;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      background: #fff;
+      transform: translateY(-1px);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
       color: var(--muted);
     }
-    .foot a{color: var(--ink); opacity:.9}
-    .foot a:hover{opacity:1; text-decoration:underline}
-    .logoSmall{
-      display:flex; align-items:center; gap:10px;
-      color: var(--muted2);
-    }
-    .logoSmall small{white-space:nowrap}
+    .field { margin-bottom: 20px; }
+    .errorText { color: #dc2626; font-size: 13px; margin-top: 6px; display: none; }
+    .hasError input, .hasError textarea { border-color: #dc2626; background: #fef2f2; }
+    .hasError .errorText { display: block; }
 
-    /* bottom quick actions */
+    .mapFrame { width: 100%; height: 300px; border: none; background: #eee; }
+
+    /* Footer */
+    footer {
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 60px 0 30px;
+    }
+    .foot {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .foot a { color: #fff; opacity: 0.8; }
+    .foot a:hover { opacity: 1; text-decoration: underline; }
+    .footAddress { opacity: 0.6; }
+
+    @media (max-width: 767.98px) {
+      .foot { flex-direction: column; text-align: center; }
+      .footAddress { order: 1; margin-bottom: 8px; }
+      .footEmail { order: 2; margin-bottom: 20px; font-size: 18px; }
+      .logoSmall { order: 3; opacity: 0.5; font-size: 12px; }
+      .footPhone, .footSep, .logoSmall img { display: none; }
+    }
+
+    /* Drawer */
+    .drawer {
+      position: fixed; top: 0; right: 0; height: 100%; width: 300px;
+      background: #fff; z-index: 200;
+      transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+      display: flex; flex-direction: column;
+    }
+    .isMenuOpen .drawer { transform: translateX(0); }
+    .drawerOverlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 150;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .isMenuOpen .drawerOverlay { opacity: 1; pointer-events: auto; }
+
+    .drawerHead { padding: 24px; display: flex; justify-content: flex-end; }
+    .drawerClose { font-size: 24px; background: none; border: none; cursor: pointer; padding: 10px; }
+    .drawerBody { padding: 0 24px; display: flex; flex-direction: column; gap: 16px; }
+    .navLink { font-size: 20px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #f1f1f1; }
+
+    /* Modal (kept, but services images are excluded from click handler) */
+    .modalOverlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.95);
+      display: none; justify-content: center; align-items: center;
+      padding: 0;
+    }
+    .modalOverlay[aria-hidden="false"] { display: flex; }
+    .modal { width: 100%; height: 100%; display: flex; flex-direction: column; background: transparent; box-shadow: none; }
+    .modalBar {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 20px; z-index: 10;
+      display: flex; justify-content: space-between;
+      color: #fff;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    }
+    .modalClose { font-size: 32px; color: #fff; background: none; border: none; cursor: pointer; }
+    .modalBody { flex: 1; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; padding: 0; }
+    .modalBody img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    /* Fixed bottom bar (3 buttons) */
     .bottomBar{
-      position:fixed;
-      left:50%;
-      bottom: max(14px, env(safe-area-inset-bottom));
-      transform: translateX(-50%);
-      z-index: 900;
-      display:flex;
-      gap:10px;
-      padding: 10px;
-      border-radius: 999px;
-      background: rgba(11,16,32,.72);
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(16px) saturate(140%);
-      box-shadow: 0 18px 50px rgba(0,0,0,.55);
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 140;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
     }
-    .quickBtn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 12px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      color: var(--ink);
-      font-weight:850;
+    .bottomBarInner{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      align-items: center;
+    }
+    .bBtn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 52px;
+      font-weight: 700;
       font-size: 14px;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-      white-space:nowrap;
+      letter-spacing: -0.01em;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(17,24,39,0.08);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      user-select: none;
     }
-    .quickBtn:hover{transform: translateY(-1px); border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.10)}
-    .quickBtn svg{opacity:.9}
+    .bBtn:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(17,24,39,0.12); }
+    .bBtn:active{ transform: translateY(0px) scale(.99); }
+    .bBtnPrimary{
+      background: linear-gradient(180deg, rgba(37,99,235,.14), rgba(37,99,235,.07));
+      color: var(--ink);
+    }
+    .bBtn .icon{ width: 18px; height: 18px; }
 
-    /* back-to-top */
+    /* Back to top */
     .toTop{
-      position:fixed;
-      right: max(16px, env(safe-area-inset-right));
-      bottom: calc(max(16px, env(safe-area-inset-bottom)) + 74px);
-      z-index: 901;
-      width: 50px; height: 50px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(11,16,32,.70);
-      backdrop-filter: blur(16px) saturate(140%);
-      display:grid; place-items:center;
-      cursor:pointer;
-      opacity:0; pointer-events:none;
-      transform: translateY(10px);
-      transition: opacity .22s ease, transform .22s ease, border-color .22s ease;
-      box-shadow: 0 18px 50px rgba(0,0,0,.55);
+      position: fixed;
+      right: 16px;
+      bottom: calc(var(--bottomBarH) + 18px + env(safe-area-inset-bottom));
+      width: 52px; height: 52px;
+      border: none;
+      background: var(--btn-bg);
+      color: #fff;
+      box-shadow: var(--shadow);
+      display: grid; place-items: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px) scale(0.96);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease, background .2s ease;
+      z-index: 160;
     }
-    .toTop:hover{border-color: rgba(122,162,255,.35)}
-    .toTop.isVisible{opacity:1; pointer-events:auto; transform:none}
+    .toTop:hover{ background: var(--accent); transform: translateY(0px) scale(1); }
+    .toTop.is-visible{
+      opacity: 1;
+      transform: translateY(0px) scale(1);
+      pointer-events: auto;
+    }
+    .toTop .icon{ width: 22px; height: 22px; }
 
-    /* reveal */
-    [data-reveal]{opacity:0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease}
-    [data-reveal].is-visible{opacity:1; transform:none}
+    @media (min-width: 768px) {
+      .phone { display: block; }
+      .contactGrid { grid-template-columns: 1fr 1fr; }
+      .servicesGrid { grid-template-columns: repeat(2, 1fr); }
+      .burger { display: none; }
+      .bottomBarInner{ grid-template-columns: repeat(3, 220px); justify-content: center; }
+    }
+    @media (min-width: 1024px) {
+      .servicesGrid { grid-template-columns: repeat(4, 1fr); }
+      .burger { display: none; }
+    }
 
-    /* responsive */
-    @media (min-width: 768px){
-      .phone{display:inline-flex}
-      .aboutGrid{grid-template-columns: 1.1fr .9fr; align-items:start}
-      .contactGrid{grid-template-columns: 1fr 1fr; align-items:start}
+    /* Reveal */
+    [data-reveal] { opacity: 0; transform: translateY(20px); transition: 0.75s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Animations */
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(16px); }
+      to{ opacity:1; transform: translateY(0); }
     }
-    @media (max-width: 560px){
-      .quickBtn span{display:none}
-      .quickBtn{padding: 12px 12px}
-      body::before{opacity:0} /* disable spotlight on small screens */
+    @keyframes slideIn{
+      from{ opacity:0; transform: translateX(-10px); }
+      to{ opacity:1; transform: translateX(0); }
     }
+    @keyframes glowPulse{
+      0%,100%{ opacity:.85; transform: translateY(-50%) scale(1); }
+      50%{ opacity:1; transform: translateY(-50%) scale(1.03); }
+    }
+    @keyframes floaty{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-2px); }
+    }
+
     @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      *{transition:none !important; animation:none !important}
-      body::before{opacity:0}
+      html{ scroll-behavior: auto; }
+      *, *::before, *::after{ animation: none !important; transition: none !important; }
+      .hero{ --heroScale: 1 !important; }
     }
   </style>
 </head>
 
 <body>
-  <div class="progress" id="progress" aria-hidden="true"></div>
-
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Header -->
   <header>
     <div class="wrap head" id="home">
       <a class="brand" href="#home" aria-label="Fairfax Dentist Home">
@@ -636,59 +551,63 @@
       </a>
 
       <div class="right">
-        <a class="phone" href="tel:5715417977" aria-label="Call 571-541-7977">571-541-7977</a>
-
-        <button class="burger" id="burger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
-          <span class="lines" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </span>
+        <a class="phone" href="tel:5715417977">571-541-7977</a>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Drawer -->
   <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
-  <aside class="drawer" id="drawer" aria-label="Site menu" aria-hidden="true">
+  <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="drawerHead">
-      <div class="drawerTitle">Menu</div>
       <button class="drawerClose" id="drawerClose" aria-label="Close menu">✕</button>
     </div>
     <div class="drawerBody">
-      <a class="navLink" href="#home">Home <span aria-hidden="true">→</span></a>
-      <a class="navLink" href="#services">Services <span aria-hidden="true">→</span></a>
-      <a class="navLink" href="#about">About <span aria-hidden="true">→</span></a>
-      <a class="navLink" href="#contact">Contact <span aria-hidden="true">→</span></a>
-
-      <div class="navMeta" aria-label="Contact quick info">
-        <a href="tel:5715417977">☎ 571-541-7977</a>
-        <a href="mailto:svvdmd@gmail.com">✉ svvdmd@gmail.com</a>
-        <div>3275 History Drive Oakton VA 22124</div>
+      <a class="navLink" href="#home">Home</a>
+      <a class="navLink" href="#services">Services</a>
+      <a class="navLink" href="#about">About</a>
+      <a class="navLink" href="#contact">Contact</a>
+      <div style="margin-top:20px; color:var(--muted); font-size:14px;">
+        <p>571-541-7977</p>
+        <p>svvdmd@gmail.com</p>
       </div>
     </div>
   </aside>
 
-  <!-- Hero -->
   <section class="hero" aria-label="Hero">
-    <div class="wrap heroInner" data-reveal>
-      <div class="kicker"><span class="dot" aria-hidden="true"></span> Comprehensive • Modern • Family</div>
-      <h1>Fairfax Dentist</h1>
-      <p class="sub">Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry.</p>
+    <div class="wrap heroInner">
+      <div class="kicker">
+        <!-- Dentist icon -->
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 3h8"></path>
+          <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+          <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+        </svg>
+        Comprehensive • Modern • Family
+      </div>
 
+      <h1>Fairfax Dentist</h1>
+      <div class="sub">
+        Excellence in Comprehensive Dental Care: Advanced Technology Meets Compassionate Family Dentistry.
+      </div>
       <div class="ctaRow">
-        <a class="btn btnPrimary" href="#contact" aria-label="Book an appointment">
-          <!-- calendar icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8 3v3M16 3v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M4 8h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M6 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+        <a class="btn btnPrimary" href="#contact">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 6h13"></path>
+            <path d="M8 12h13"></path>
+            <path d="M8 18h13"></path>
+            <path d="M3 6h.01"></path>
+            <path d="M3 12h.01"></path>
+            <path d="M3 18h.01"></path>
           </svg>
           Book an Appointment
         </a>
-        <a class="btn" href="#services" aria-label="View services">
-          <!-- tooth icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8 4c-1.7 0-3 1.3-3 3 0 2.3 1.2 4 1.2 6.3 0 2.2.8 6.7 3 6.7 1.6 0 1.9-2.5 2.8-4.9.3-.7.8-1.1 1-1.1s.7.4 1 1.1c.9 2.4 1.2 4.9 2.8 4.9 2.2 0 3-4.5 3-6.7C20.8 11 22 9.3 22 7c0-1.7-1.3-3-3-3-2 0-3 .8-4 .8S13 4 12 4s-1 .8-2 .8S10 4 8 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <a class="btn btnSecondary" href="#services">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 5v14"></path>
+            <path d="M5 12h14"></path>
           </svg>
           View Services
         </a>
@@ -697,204 +616,200 @@
   </section>
 
   <main id="main">
-    <!-- Services -->
-    <section class="section" id="services" aria-label="Services">
+    <section class="section bg-white" id="services" aria-label="Services">
       <div class="wrap" data-reveal>
-        <div class="sectionHead">
-          <div class="label">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2v4M12 18v4M4 12H2M22 12h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" stroke="currentColor" stroke-width="2"/>
-            </svg>
-            Our Expertise
-          </div>
-          <h2 class="h2">Advanced dental solutions under one roof</h2>
-          <p class="p">Each service opens a dedicated page in a new tab.</p>
-        </div>
+        <div class="kicker" style="margin-bottom:10px;">Our Expertise</div>
+        <h2 class="h2" style="max-width:600px;">Advanced dental solutions under one roof</h2>
 
-        <div class="servicesGrid">
-          <!-- 1 -->
+        <div class="grid servicesGrid" style="margin-top:40px;">
+          <!-- Cards open service.html in a NEW TAB -->
           <a class="card" href="service.html?service=implants" target="_blank" rel="noopener" aria-label="Dental Implants — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/implants.webp" type="image/webp">
-                <img src="images/implants.jpg" alt="Dental Implants" loading="lazy" decoding="async" data-full-webp="images/implants.webp" data-full-jpg="images/implants.jpg">
+                <img src="images/implants.jpg" alt="Dental Implants" loading="lazy" decoding="async" data-full-webp="images/implants.webp" data-full-jpg="images/implants.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <div class="cardTop">
-                <h3 class="cardTitle">Dental Implants</h3>
-                <div class="iconPill" aria-hidden="true">
-                  <!-- implant icon -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M10 3h4M9 7h6M10 7v5a2 2 0 0 0 4 0V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M8 14c0 4 2 7 4 7s4-3 4-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M8 3h8"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+                    <path d="M12 12v5"></path>
+                    <path d="M9.5 14.5h5"></path>
                   </svg>
-                </div>
+                </span>
+                <h3 class="cardTitle">Dental Implants</h3>
               </div>
               <p class="cardText">Permanent and natural-looking solutions to restore missing teeth and oral functionality.</p>
             </div>
           </a>
 
-          <!-- 2 -->
           <a class="card" href="service.html?service=veneers" target="_blank" rel="noopener" aria-label="Dental Veneers — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/veneers.webp" type="image/webp">
-                <img src="images/veneers.jpg" alt="Dental Veneers" loading="lazy" decoding="async" data-full-webp="images/veneers.webp" data-full-jpg="images/veneers.jpg">
+                <img src="images/veneers.jpg" alt="Dental Veneers" loading="lazy" decoding="async" data-full-webp="images/veneers.webp" data-full-jpg="images/veneers.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <div class="cardTop">
-                <h3 class="cardTitle">Dental Veneers</h3>
-                <div class="iconPill" aria-hidden="true">
-                  <!-- sparkle smile -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 14c1.5 2 3.5 3 5 3s3.5-1 5-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M6 10c2-2 10-2 12 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M18.5 4.5l.6 1.6 1.6.6-1.6.6-.6 1.6-.6-1.6-1.6-.6 1.6-.6.6-1.6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M8 3h8"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
+                    <path d="M19 6l1 1"></path>
+                    <path d="M18 8l2 2"></path>
+                    <path d="M17 10l1 1"></path>
                   </svg>
-                </div>
+                </span>
+                <h3 class="cardTitle">Dental Veneers</h3>
               </div>
               <p class="cardText">Custom-crafted porcelain shells designed to enhance the color, shape, and overall aesthetics of your smile.</p>
             </div>
           </a>
 
-          <!-- 3 -->
           <a class="card" href="service.html?service=emergency" target="_blank" rel="noopener" aria-label="Emergency Dentist — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/dendist.webp" type="image/webp">
-                <img src="images/dendist.jpg" alt="Emergency Dentist" loading="lazy" decoding="async" data-full-webp="images/dendist.webp" data-full-jpg="images/dendist.jpg">
+                <img src="images/dendist.jpg" alt="Emergency Dentist" loading="lazy" decoding="async" data-full-webp="images/dendist.webp" data-full-jpg="images/dendist.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <div class="cardTop">
-                <h3 class="cardTitle">Emergency Dentist</h3>
-                <div class="iconPill" aria-hidden="true">
-                  <!-- medical cross -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="2"/>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 9v4"></path>
+                    <path d="M12 17h.01"></path>
+                    <path d="M10 3h4"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
                   </svg>
-                </div>
+                </span>
+                <h3 class="cardTitle">Emergency Dentist</h3>
               </div>
               <p class="cardText">Urgent dental intervention for pain relief, trauma, and acute infections with same-day availability.</p>
             </div>
           </a>
 
-          <!-- 4 -->
           <a class="card" href="service.html?service=invisalign" target="_blank" rel="noopener" aria-label="Invisalign — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/invisalign.webp" type="image/webp">
-                <img src="images/invisalign.jpg" alt="Invisalign" loading="lazy" decoding="async" data-full-webp="images/invisalign.webp" data-full-jpg="images/invisalign.jpg">
+                <img src="images/invisalign.jpg" alt="Invisalign" loading="lazy" decoding="async" data-full-webp="images/invisalign.webp" data-full-jpg="images/invisalign.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <div class="cardTop">
-                <h3 class="cardTitle">Invisalign</h3>
-                <div class="iconPill" aria-hidden="true">
-                  <!-- aligner icon -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 7c2-2 8-2 10 0v10c-2 2-8 2-10 0V7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                    <path d="M9 9h6M9 12h6M9 15h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M7 7h10"></path>
+                    <path d="M6 10h12"></path>
+                    <path d="M7 13h10"></path>
+                    <path d="M8 16h8"></path>
+                    <path d="M9 19h6"></path>
                   </svg>
-                </div>
+                </span>
+                <h3 class="cardTitle">Invisalign</h3>
               </div>
               <p class="cardText">Advanced orthodontic treatment using clear, removable aligners for a discreet and comfortable smile correction.</p>
             </div>
           </a>
 
-          <!-- 5 -->
           <a class="card" href="service.html?service=whitening" target="_blank" rel="noopener" aria-label="Teeth Whitening — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/teeth.webp" type="image/webp">
-                <img src="images/teeth.jpg" alt="Teeth Whitening" loading="lazy" decoding="async" data-full-webp="images/teeth.webp" data-full-jpg="images/teeth.jpg">
+                <img src="images/teeth.jpg" alt="Teeth Whitening" loading="lazy" decoding="async" data-full-webp="images/teeth.webp" data-full-jpg="images/teeth.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <div class="cardTop">
-                <h3 class="cardTitle">Teeth Whitening</h3>
-                <div class="iconPill" aria-hidden="true">
-                  <!-- sparkle -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 3l1.2 3.2L16 7.4l-2.8 1.2L12 12l-1.2-3.4L8 7.4l2.8-1.2L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                    <path d="M19 11l.8 2.1L22 14l-2.2.9L19 17l-.8-2.1L16 14l2.2-.9L19 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 3l.7 2.1L15 6l-2.3.9L12 9l-.7-2.1L9 6l2.3-.9L12 3z"></path>
+                    <path d="M19 9l.6 1.8L21 12l-1.4.7L19 15l-.6-2.3L17 12l1.4-.7L19 9z"></path>
+                    <path d="M8 3h8"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
                   </svg>
-                </div>
+                </span>
+                <h3 class="cardTitle">Teeth Whitening</h3>
               </div>
               <p class="cardText">Professional-grade brightening treatments to effectively remove deep stains and restore natural radiance.</p>
             </div>
           </a>
 
-          <!-- 6 -->
           <a class="card" href="service.html?service=rootcanal" target="_blank" rel="noopener" aria-label="Root Canal — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/canal.webp" type="image/webp">
-                <img src="images/canal.jpg" alt="Root Canal" loading="lazy" decoding="async" data-full-webp="images/canal.webp" data-full-jpg="images/canal.jpg">
+                <img src="images/canal.jpg" alt="Root Canal" loading="lazy" decoding="async" data-full-webp="images/canal.webp" data-full-jpg="images/canal.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <div class="cardTop">
-                <h3 class="cardTitle">Root Canal</h3>
-                <div class="iconPill" aria-hidden="true">
-                  <!-- tool -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 20l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M13 5l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M12 6l-2 2 8 8 2-2-8-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M14 4l6 6"></path>
+                    <path d="M16 2l6 6"></path>
+                    <path d="M4 20l8-8"></path>
+                    <path d="M8 21l-5-5"></path>
+                    <path d="M10 3h4"></path>
+                    <path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4v2c0 2.2-.8 4.4-2.2 6.1l-.8 1c-.6.7-1 1.6-1 2.5V21"></path>
+                    <path d="M10 21v-2.4c0-.9-.4-1.8-1-2.5l-.8-1C6.8 13.4 6 11.2 6 9V7"></path>
                   </svg>
-                </div>
+                </span>
+                <h3 class="cardTitle">Root Canal</h3>
               </div>
               <p class="cardText">Specialized endodontic therapy focused on saving infected teeth and preventing further complications.</p>
             </div>
           </a>
 
-          <!-- 7 -->
           <a class="card" href="service.html?service=aesthetic" target="_blank" rel="noopener" aria-label="Aesthetic Dentistry — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/aesthetic.webp" type="image/webp">
-                <img src="images/aesthetic.jpg" alt="Aesthetic Dentistry" loading="lazy" decoding="async" data-full-webp="images/aesthetic.webp" data-full-jpg="images/aesthetic.jpg">
+                <img src="images/aesthetic.jpg" alt="Aesthetic Dentistry" loading="lazy" decoding="async" data-full-webp="images/aesthetic.webp" data-full-jpg="images/aesthetic.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <div class="cardTop">
-                <h3 class="cardTitle">Aesthetic Dentistry</h3>
-                <div class="iconPill" aria-hidden="true">
-                  <!-- wand -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 20l10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M14 10l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M15 4l.7 1.8L17.5 6.5l-1.8.7L15 9l-.7-1.8L12.5 6.5l1.8-.7L15 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 2l2.4 6.5L21 9l-5 4 1.8 7L12 16.8 6.2 20 8 13 3 9l6.6-.5L12 2z"></path>
                   </svg>
-                </div>
+                </span>
+                <h3 class="cardTitle">Aesthetic Dentistry</h3>
               </div>
               <p class="cardText">A comprehensive approach to smile design, merging restorative techniques with artistic precision.</p>
             </div>
           </a>
 
-          <!-- 8 -->
           <a class="card" href="service.html?service=xrays" target="_blank" rel="noopener" aria-label="Dental X-Rays — open details page">
             <div class="cardMedia">
               <picture>
                 <source srcset="images/xrays.webp" type="image/webp">
-                <img src="images/xrays.jpg" alt="Dental X-Rays" loading="lazy" decoding="async" data-full-webp="images/xrays.webp" data-full-jpg="images/xrays.jpg">
+                <img src="images/xrays.jpg" alt="Dental X-Rays" loading="lazy" decoding="async" data-full-webp="images/xrays.webp" data-full-jpg="images/xrays.jpg" />
               </picture>
             </div>
             <div class="cardBody">
-              <div class="cardTop">
-                <h3 class="cardTitle">Dental X-Rays</h3>
-                <div class="iconPill" aria-hidden="true">
-                  <!-- x-ray -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 7h16v10H4V7Z" stroke="currentColor" stroke-width="2"/>
-                    <path d="M8 10h8M8 14h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <div class="cardHead">
+                <span class="svcIcon" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M4 6h16"></path>
+                    <path d="M6 4v16"></path>
+                    <path d="M18 4v16"></path>
+                    <path d="M4 18h16"></path>
+                    <path d="M9 9l6 6"></path>
+                    <path d="M15 9l-6 6"></path>
                   </svg>
-                </div>
+                </span>
+                <h3 class="cardTitle">Dental X-Rays</h3>
               </div>
               <p class="cardText">High-definition digital diagnostics for precise treatment planning and early detection of dental issues.</p>
             </div>
@@ -903,188 +818,147 @@
       </div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about" aria-label="About">
+    <section class="section bg-ice" id="about" aria-label="About">
       <div class="wrap" data-reveal>
-        <div class="sectionHead">
-          <div class="label">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
-              <path d="M5 22c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            The Clinic
-          </div>
-          <h2 class="h2">Fairfax Dental Care</h2>
-          <p class="p">Patient-centered, modern dentistry with a calm night aesthetic.</p>
-        </div>
-
-        <div class="aboutGrid">
-          <div class="aboutBox">
-            <p>
-              Welcome to Fairfax Dental Care, a premier dental practice serving the Fairfax, Virginia community for over two decades.
-              Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions.
-              Led by Dr. Vladimir Soyfer, Dr. Mazda Mansouri, and Dr. Alex, our team combines clinical expertise with genuine compassion.
-            </p>
-            <p>
-              We specialize in everything from routine preventive exams and professional hygiene to complex restorative and cosmetic procedures—
-              including durable dental implants, porcelain veneers, and Invisalign. By utilizing the latest dental technologies under one roof,
-              we ensure a stress-free experience and healthy, lasting results for the entire family.
-            </p>
-          </div>
-
-          <div class="stats" aria-label="Key highlights">
-            <div class="stat">
-              <b>20+ Years</b>
-              <span>Serving Fairfax families</span>
-            </div>
-            <div class="stat">
-              <b>Modern Tech</b>
-              <span>Digital diagnostics & planning</span>
-            </div>
-            <div class="stat">
-              <b>Comfort First</b>
-              <span>Gentle, low-stress approach</span>
-            </div>
-            <div class="stat">
-              <b>Full Spectrum</b>
-              <span>Preventive → cosmetic → restorative</span>
-            </div>
-          </div>
+        <div class="kicker">The Clinic</div>
+        <h2 class="h2">Fairfax Dental Care</h2>
+        <div class="aboutBox" style="margin-top:24px;">
+          <p>Welcome to Fairfax Dental Care, a premier dental practice serving the Fairfax, Virginia community for over two decades. Our mission is to provide gentle, patient-centered care through a full spectrum of modern dental solutions. Led by Dr. Vladimir Soyfer, Dr. Mazda Mansouri, and Dr. Alex, our team combines clinical expertise with genuine compassion.</p>
+          <p style="margin-bottom:0;">We specialize in everything from routine preventive exams and professional hygiene to complex restorative and cosmetic procedures—including durable dental implants, porcelain veneers, and Invisalign. By utilizing the latest dental technologies under one roof, we ensure a stress-free experience and healthy, lasting results for the entire family.</p>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="section" id="contact" aria-label="Contact">
+    <section class="section bg-white" id="contact" aria-label="Contact">
       <div class="wrap" data-reveal>
-        <div class="sectionHead">
-          <div class="label">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/>
-              <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="2"/>
-            </svg>
-            Contact Us
-          </div>
-          <h2 class="h2">Working hours & location</h2>
-          <p class="p">Reach us fast — call, book, or open directions.</p>
-        </div>
+        <div class="kicker">Contact Us</div>
+        <h2 class="h2">Working hours & Location</h2>
 
-        <div class="contactGrid">
-          <div class="panel" aria-label="Hours and map">
-            <h3 style="margin:0 0 10px; font-size:18px; letter-spacing:-.01em;">Opening Hours</h3>
+        <div class="contactGrid" style="margin-top:40px;">
+          <div>
+            <div class="panel">
+              <h3 style="margin-top:0; font-size:20px;">Opening Hours</h3>
+              <div class="hours" role="list">
+                <div class="hoursRow"><span>Monday – Friday</span><b>8:00 – 17:00</b></div>
+                <div class="hoursRow"><span>Saturday</span><b>9:00 – 13:00</b></div>
+                <div class="hoursRow"><span>Sunday</span><span style="color:#dc2626;">Closed</span></div>
+              </div>
 
-            <div class="hoursRow"><span>Monday – Friday</span><b>8:00 – 17:00</b></div>
-            <div class="hoursRow"><span>Saturday</span><b>9:00 – 13:00</b></div>
-            <div class="hoursRow"><span>Sunday</span><span style="color:#ff7b93;">Closed</span></div>
-
-            <div style="height:16px"></div>
-
-            <h3 style="margin:14px 0 10px; font-size:18px; letter-spacing:-.01em;">Address</h3>
-            <p class="p" style="margin-bottom:12px;">3275 History Drive Oakton VA 22124</p>
-
-            <div class="mapFrame" aria-label="Google map">
-              <iframe
-                title="Google Maps - 3275 History Drive Oakton VA 22124"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed">
-              </iframe>
+              <h3 style="margin-top:40px; font-size:20px;">Find Us</h3>
+              <p class="sub" style="margin-bottom:20px;">3275 History Drive Oakton VA 22124</p>
+              <div class="mapFrame">
+                 <iframe title="Map" width="100%" height="100%" frameborder="0" style="border:0" loading="lazy" allowfullscreen
+                  src="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124&output=embed"></iframe>
+              </div>
             </div>
           </div>
 
-          <div class="panel" aria-label="Contact form">
-            <h3 style="margin:0 0 10px; font-size:18px; letter-spacing:-.01em;">Send a Message</h3>
-            <p class="p" style="margin-bottom:14px;">We’ll reply as soon as possible.</p>
-
-            <form id="contactForm" novalidate>
-              <div class="field" id="fName">
-                <label for="name">Full name</label>
-                <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="John Doe" />
-                <p class="errorText">Enter your name (at least 2 characters).</p>
-              </div>
-
-              <div class="field" id="fEmail">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
-                <p class="errorText">Enter a valid email address.</p>
-              </div>
-
-              <div class="field" id="fPhone">
-                <label for="phone">Phone</label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="571-541-7977" />
-                <p class="errorText">Enter your phone number.</p>
-              </div>
-
-              <div class="field" id="fMsg">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required minlength="10" placeholder="I would like to book..."></textarea>
-                <p class="errorText">Please write at least 10 characters.</p>
-              </div>
-
-              <button class="btn btnPrimary" style="width:100%" type="submit">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                </svg>
-                Send Message
-              </button>
-              <p id="formStatus" class="p" aria-live="polite" style="margin-top:10px;"></p>
-            </form>
+          <div>
+            <div class="panel">
+              <h3 style="margin-top:0; font-size:20px; margin-bottom:20px;">Send a Message</h3>
+              <form id="contactForm" novalidate>
+                <div class="field" id="fName">
+                  <label for="name">Full Name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="John Doe" />
+                  <p class="errorText">Enter your name.</p>
+                </div>
+                <div class="field" id="fEmail">
+                  <label for="email">Email Address</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+                  <p class="errorText">Enter a valid email.</p>
+                </div>
+                <div class="field" id="fPhone">
+                  <label for="phone">Phone Number</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="571-541-7977" />
+                  <p class="errorText">Enter a valid phone number.</p>
+                </div>
+                <div class="field" id="fMsg">
+                  <label for="message">How can we help?</label>
+                  <textarea id="message" name="message" required minlength="10" placeholder="I would like to book..."></textarea>
+                  <p class="errorText">Please write at least 10 characters.</p>
+                </div>
+                <button class="btn btnPrimary" style="width:100%;" type="submit">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M22 2L11 13"></path>
+                    <path d="M22 2l-7 20-4-9-9-4 20-7z"></path>
+                  </svg>
+                  Send Message
+                </button>
+                <p class="hint" id="formStatus" aria-live="polite" style="margin-top:10px; font-size:14px; color:green;"></p>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer aria-label="Footer">
     <div class="wrap foot">
-      <small>3275 History Drive Oakton VA 22124</small>
+      <small class="footAddress">3275 History Drive Oakton VA 22124</small>
 
-      <small>
+      <small class="footEmail">
         <a href="mailto:svvdmd@gmail.com">svvdmd@gmail.com</a>
-        <span aria-hidden="true"> • </span>
-        <a href="tel:5715417977">571-541-7977</a>
+        <span class="footSep"> • </span>
+        <a class="footPhone" href="tel:5715417977">571-541-7977</a>
       </small>
 
       <div class="logoSmall">
-        <small>© 2006-2026 Fairfax Dentist</small>
+        <small class="footCopy">© 2006-2026 Fairfax Dentist</small>
       </div>
     </div>
   </footer>
 
-  <!-- Bottom bar -->
+  <!-- Modal (still available for non-services images if you add any later) -->
+  <div class="modalOverlay" id="imgModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document">
+      <div class="modalBar">
+        <b id="modalTitle"></b>
+        <button class="modalClose" id="modalClose" aria-label="Close preview">✕</button>
+      </div>
+      <div class="modalBody">
+        <img id="modalImg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed bottom 3 buttons (main page) -->
   <nav class="bottomBar" aria-label="Quick actions">
-    <a class="quickBtn" href="tel:5715417977" aria-label="Call">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M22 16.9v3a2 2 0 0 1-2.2 2c-9.7-.9-17.5-8.7-18.4-18.4A2 2 0 0 1 3.4 1h3a2 2 0 0 1 2 1.7c.2 1.4.6 2.7 1.1 4a2 2 0 0 1-.5 2.1L7.8 10c1.5 2.9 3.9 5.3 6.8 6.8l1.2-1.2a2 2 0 0 1 2.1-.5c1.3.5 2.6.9 4 1.1a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
-      <span>Call</span>
-    </a>
+    <div class="wrap bottomBarInner">
+      <a class="bBtn" href="tel:5715417977" aria-label="Call">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 16.9v3a2 2 0 0 1-2.2 2c-3.4-.4-6.6-2-9.2-4.6S6.4 11.6 6 8.2A2 2 0 0 1 8 6h3l1.1 4-2.1 1.1a15 15 0 0 0 5.9 5.9l1.1-2.1 4 1z"></path>
+        </svg>
+        Call
+      </a>
 
-    <a class="quickBtn" href="#contact" aria-label="Book">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M8 3v3M16 3v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M4 8h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M6 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
-      </svg>
-      <span>Book</span>
-    </a>
+      <a class="bBtn bBtnPrimary" href="#contact" aria-label="Book appointment">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 2v4"></path>
+          <path d="M16 2v4"></path>
+          <path d="M3 10h18"></path>
+          <path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+          <path d="M8 14h4"></path>
+          <path d="M8 18h6"></path>
+        </svg>
+        Book
+      </a>
 
-    <a class="quickBtn" href="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124" target="_blank" rel="noopener" aria-label="Directions">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 22s7-4.5 7-12a7 7 0 1 0-14 0c0 7.5 7 12 7 12Z" stroke="currentColor" stroke-width="2"/>
-        <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="2"/>
-      </svg>
-      <span>Directions</span>
-    </a>
+      <a class="bBtn" href="https://www.google.com/maps?q=3275%20History%20Drive%20Oakton%20VA%2022124" target="_blank" rel="noopener" aria-label="Get directions">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s7-4.5 7-11a7 7 0 0 0-14 0c0 6.5 7 11 7 11z"></path>
+          <path d="M12 10a2 2 0 1 0 0.001 0z"></path>
+        </svg>
+        Directions
+      </a>
+    </div>
   </nav>
 
-  <!-- Back to top -->
-  <button class="toTop" id="toTop" type="button" aria-label="Back to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <path d="M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Back to top button -->
+  <button class="toTop" id="toTop" aria-label="Back to top">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 19V5"></path>
+      <path d="M5 12l7-7 7 7"></path>
     </svg>
   </button>
 
@@ -1092,7 +966,7 @@
     (function(){
       "use strict";
 
-      // WebP hardening (keeps site working if WebP not served)
+      /* WebP Logic */
       function canLoadImage(url){
         return new Promise((resolve) => {
           const im = new Image();
@@ -1103,15 +977,15 @@
         });
       }
       async function hardenPictureWebp(){
-        const ok = await canLoadImage("images/implants.webp");
-        if(!ok){
+        const probe = await canLoadImage("images/implants.webp");
+        if(!probe){
           document.querySelectorAll('source[type="image/webp"]').forEach(s => s.remove());
           document.querySelectorAll('[data-full-webp]').forEach(el => el.removeAttribute("data-full-webp"));
         }
       }
       hardenPictureWebp();
 
-      // Menu
+      /* Menu */
       const root = document.documentElement;
       const burger = document.getElementById("burger");
       const drawer = document.getElementById("drawer");
@@ -1121,20 +995,20 @@
 
       function openMenu(){
         root.classList.add("isMenuOpen");
-        burger.setAttribute("aria-expanded","true");
         drawer.setAttribute("aria-hidden","false");
         overlay.setAttribute("aria-hidden","false");
       }
       function closeMenu(){
         root.classList.remove("isMenuOpen");
-        burger.setAttribute("aria-expanded","false");
         drawer.setAttribute("aria-hidden","true");
         overlay.setAttribute("aria-hidden","true");
       }
-      burger.addEventListener("click", () => {
-        const expanded = burger.getAttribute("aria-expanded")==="true";
-        expanded ? closeMenu() : openMenu();
-      });
+      if(burger){
+        burger.addEventListener("click", () => {
+          const isOpen = root.classList.contains("isMenuOpen");
+          isOpen ? closeMenu() : openMenu();
+        });
+      }
       overlay.addEventListener("click", closeMenu);
       closeBtn.addEventListener("click", closeMenu);
       menuLinks.forEach(a => a.addEventListener("click", closeMenu));
@@ -1142,7 +1016,7 @@
         if(e.key === "Escape") closeMenu();
       });
 
-      // Reveal
+      /* Reveal */
       const revealEls = document.querySelectorAll("[data-reveal]");
       const io = new IntersectionObserver((entries) => {
         entries.forEach(en => {
@@ -1151,49 +1025,85 @@
             io.unobserve(en.target);
           }
         });
-      }, {threshold: 0.12});
+      }, {threshold: 0.1});
       revealEls.forEach(el => io.observe(el));
 
-      // Scroll progress
-      const progress = document.getElementById("progress");
-      function updateProgress(){
-        const doc = document.documentElement;
-        const scrollTop = doc.scrollTop || document.body.scrollTop;
-        const height = doc.scrollHeight - doc.clientHeight;
-        const pct = height > 0 ? (scrollTop / height) * 100 : 0;
-        progress.style.width = pct.toFixed(2) + "%";
-      }
-      window.addEventListener("scroll", updateProgress, {passive:true});
-      updateProgress();
+      /* Modal (kept). IMPORTANT: exclude services images so cards open pages normally */
+      const imgModal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImg");
+      const modalClose = document.getElementById("modalClose");
+      const modalTitle = document.getElementById("modalTitle");
 
-      // Back to top
+      function openImage(img){
+        const webp = img.getAttribute("data-full-webp");
+        const jpg = img.getAttribute("data-full-jpg") || img.currentSrc || img.src;
+        modalImg.src = webp || jpg;
+        modalImg.alt = img.alt || "";
+        modalTitle.textContent = img.alt || "";
+        imgModal.setAttribute("aria-hidden","false");
+        document.body.style.overflow = "hidden";
+      }
+      function closeImage(){
+        imgModal.setAttribute("aria-hidden","true");
+        modalImg.src = "";
+        document.body.style.overflow = "";
+      }
+
+      const clickableImgs = Array.from(document.querySelectorAll("img"))
+        .filter(im =>
+          !im.closest(".brand") &&
+          !im.closest(".logoSmall") &&
+          !im.closest(".servicesGrid")
+        );
+
+      clickableImgs.forEach(im => {
+        im.style.cursor = "zoom-in";
+        im.addEventListener("click", () => openImage(im));
+      });
+
+      if(imgModal){
+        imgModal.addEventListener("click", (e) => {
+          if(e.target === imgModal) closeImage();
+        });
+      }
+      if(modalClose){
+        modalClose.addEventListener("click", closeImage);
+      }
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape" && imgModal && imgModal.getAttribute("aria-hidden") === "false") closeImage();
+      });
+
+      /* Back-to-top button */
       const toTop = document.getElementById("toTop");
       function updateToTop(){
-        const y = window.scrollY || 0;
-        if(y > 650) toTop.classList.add("isVisible");
-        else toTop.classList.remove("isVisible");
+        const show = window.scrollY > 420;
+        if(show) toTop.classList.add("is-visible");
+        else toTop.classList.remove("is-visible");
       }
-      window.addEventListener("scroll", updateToTop, {passive:true});
       updateToTop();
-
+      window.addEventListener("scroll", updateToTop, {passive:true});
       toTop.addEventListener("click", () => {
         window.scrollTo({top: 0, behavior: "smooth"});
       });
 
-      // Spotlight follow (desktop only)
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const coarse = window.matchMedia("(pointer: coarse)").matches;
-      if(!reduce && !coarse){
-        window.addEventListener("pointermove", (e) => {
-          document.body.style.setProperty("--mx", e.clientX + "px");
-          document.body.style.setProperty("--my", e.clientY + "px");
+      /* Hero micro-parallax (gentle) */
+      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const hero = document.querySelector(".hero");
+      if(hero && !prefersReduced){
+        let ticking = false;
+        window.addEventListener("scroll", () => {
+          if(ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = Math.min(window.scrollY, 800);
+            const scale = 1 + (y / 8000); // very subtle
+            hero.style.setProperty("--heroScale", scale.toFixed(4));
+            ticking = false;
+          });
         }, {passive:true});
-      } else {
-        document.body.style.setProperty("--mx", "50%");
-        document.body.style.setProperty("--my", "30%");
       }
 
-      // Form validation
+      /* Form */
       const form = document.getElementById("contactForm");
       const status = document.getElementById("formStatus");
 
@@ -1202,36 +1112,25 @@
         if(el) on ? el.classList.add("hasError") : el.classList.remove("hasError");
       }
 
-      function validate(){
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
         let ok = true;
         const name = document.getElementById("name");
         const email = document.getElementById("email");
         const phone = document.getElementById("phone");
         const msg = document.getElementById("message");
 
-        const nameOk = name.value.trim().length >= 2;
-        setError("fName", !nameOk); ok = ok && nameOk;
+        if(name.value.trim().length < 2) { setError("fName", true); ok=false; } else setError("fName", false);
+        if(!email.checkValidity()) { setError("fEmail", true); ok=false; } else setError("fEmail", false);
+        if(!phone.value) { setError("fPhone", true); ok=false; } else setError("fPhone", false);
+        if(msg.value.trim().length < 10) { setError("fMsg", true); ok=false; } else setError("fMsg", false);
 
-        const emailOk = email.checkValidity();
-        setError("fEmail", !emailOk); ok = ok && emailOk;
-
-        const phoneOk = phone.value.trim().length > 0;
-        setError("fPhone", !phoneOk); ok = ok && phoneOk;
-
-        const msgOk = msg.value.trim().length >= 10;
-        setError("fMsg", !msgOk); ok = ok && msgOk;
-
-        return ok;
-      }
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        status.textContent = "";
-        const ok = validate();
-        if(!ok) return;
-
-        status.textContent = "Message sent successfully! We’ll contact you shortly.";
-        form.reset();
+        if(ok){
+          status.textContent = "Message sent successfully!";
+          form.reset();
+        } else {
+          status.textContent = "";
+        }
       });
 
     })();
